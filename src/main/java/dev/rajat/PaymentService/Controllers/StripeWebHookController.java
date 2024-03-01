@@ -1,5 +1,6 @@
 package dev.rajat.PaymentService.Controllers;
 
+import com.stripe.model.Event;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class StripeWebHookController {
 
     @PostMapping
-    public void stripeWebhook(){
-        System.out.println("In Stripe WebHook");
+    public void stripeWebhook(Event event){
+        if(event.getType().isBlank()){
+            System.out.println("No event happened!");
+        }
     }
 }
